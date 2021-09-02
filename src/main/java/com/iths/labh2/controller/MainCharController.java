@@ -35,7 +35,7 @@ public class MainCharController {
         return mainCharRepository.findAll();
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/heroes/id{id}")
     public ResponseEntity<Hero> getHeroById(@PathVariable(value = "id") Long heroId)
             throws ResourceNotFoundException {
         Hero hero = mainCharRepository.findById(heroId)
@@ -43,12 +43,12 @@ public class MainCharController {
         return ResponseEntity.ok().body(hero);
     }
 
-    @PostMapping("/hero")
+    @PostMapping("/heroes")
     public Hero createHero(@Valid @RequestBody Hero hero) {
         return mainCharRepository.save(hero);
     }
 
-    @GetMapping("/hero/{hero}")
+    @GetMapping("/heroes/hero{hero}")
     public List<Hero> findAllByHero(@PathVariable String hero) {
         if (mainCharRepository.findAllByHero(hero).isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -56,7 +56,7 @@ public class MainCharController {
             return mainCharRepository.findAllByHero(hero);
     }
 
-    @GetMapping("/movie/{movie}")
+    @GetMapping("/heroes/movie{movie}")
     public List<Hero> findAllByMovie(@PathVariable String movie) {
         if (mainCharRepository.findAllByMovie(movie).isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -64,7 +64,7 @@ public class MainCharController {
             return mainCharRepository.findAllByMovie(movie);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/heroes/delete")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> deleteHero(@RequestBody Hero hero) {
         if(mainCharRepository.existsById(hero.getId())) {
@@ -75,7 +75,7 @@ public class MainCharController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/heroes/update")
     public ResponseEntity<?> updateHero(@RequestBody Hero hero) {
         if (!mainCharRepository.existsById(hero.getId())){
             throw new ResponseStatusException(HttpStatus.NOT_MODIFIED);

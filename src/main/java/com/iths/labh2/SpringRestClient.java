@@ -17,10 +17,10 @@ import org.springframework.web.client.RestTemplate;
 public class SpringRestClient {
 
     private static final String GET_HEROES_ENDPOINT_URL = "http://localhost:8080/db/heroes";
-    private static final String GET_HERO_ENDPOINT_URL = "http://localhost:8080/db/heroes/{id}";
+    private static final String GET_HERO_ENDPOINT_URL = "http://localhost:8080/db/heroes";
     private static final String CREATE_HERO_ENDPOINT_URL = "http://localhost:8080/db/heroes";
-    private static final String UPDATE_HERO_ENDPOINT_URL = "http://localhost:8080/db/heroes/{id}";
-    private static final String DELETE_HERO_ENDPOINT_URL = "http://localhost:8080/db/heroes/{id}";
+    private static final String UPDATE_HERO_ENDPOINT_URL = "http://localhost:8080/db/heroes";
+    private static final String DELETE_HERO_ENDPOINT_URL = "http://localhost:8080/db/heroes";
     private static RestTemplate restTemplate = new RestTemplate();
 
     public static void main(String[] args) {
