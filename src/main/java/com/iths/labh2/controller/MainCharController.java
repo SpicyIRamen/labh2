@@ -35,7 +35,7 @@ public class MainCharController {
         return mainCharRepository.findAll();
     }
 
-    @GetMapping("/heroes/id{id}")
+    @GetMapping("/heroes/{id}")
     public ResponseEntity<Hero> getHeroById(@PathVariable(value = "id") Long heroId)
             throws ResourceNotFoundException {
         Hero hero = mainCharRepository.findById(heroId)
@@ -48,23 +48,8 @@ public class MainCharController {
         return mainCharRepository.save(hero);
     }
 
-    @GetMapping("/heroes/hero{hero}")
-    public List<Hero> findAllByHero(@PathVariable String hero) {
-        if (mainCharRepository.findAllByHero(hero).isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }else
-            return mainCharRepository.findAllByHero(hero);
-    }
 
-    @GetMapping("/heroes/movie{movie}")
-    public List<Hero> findAllByMovie(@PathVariable String movie) {
-        if (mainCharRepository.findAllByMovie(movie).isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }else
-            return mainCharRepository.findAllByMovie(movie);
-    }
-
-    @DeleteMapping("/heroes/delete")
+    @DeleteMapping("/heroes/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> deleteHero(@RequestBody Hero hero) {
         if(mainCharRepository.existsById(hero.getId())) {
@@ -75,7 +60,7 @@ public class MainCharController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/heroes/update")
+    @PutMapping("/heroes/{id}")
     public ResponseEntity<?> updateHero(@RequestBody Hero hero) {
         if (!mainCharRepository.existsById(hero.getId())){
             throw new ResponseStatusException(HttpStatus.NOT_MODIFIED);
